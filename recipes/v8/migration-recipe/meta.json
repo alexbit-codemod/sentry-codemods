@@ -1,0 +1,10 @@
+{
+  "name": "@sentry/migration-recipe",
+  "summary": "",
+  "safety": "conservative",
+  "tags": [
+    "sentry",
+    "migration"
+  ],
+  "options": {}
+}

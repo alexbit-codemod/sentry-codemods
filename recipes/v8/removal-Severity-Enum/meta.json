@@ -1,0 +1,10 @@
+{
+  "name": "@sentry/removal-Severity-Enum",
+  "summary": "Codemod to replace the deprecated Severity enum with the SeverityLevel type in Sentry from version 7.x to 8.x.",
+  "safety": "conservative",
+  "tags": [
+    "sentry",
+    "migration"
+  ],
+  "options": {}
+}

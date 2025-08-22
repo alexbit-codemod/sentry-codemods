@@ -1,0 +1,10 @@
+{
+  "name": "@sentry/removal-of-addGlobalEventProcessor",
+  "summary": "Codemod to replace deprecated Sentry.addGlobalEventProcessor with Sentry.getGlobalScope().addEventProcessor in migration from version 7.x to 8.x.",
+  "safety": "conservative",
+  "tags": [
+    "sentry",
+    "migration"
+  ],
+  "options": {}
+}

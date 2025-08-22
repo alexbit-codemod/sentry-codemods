@@ -1,0 +1,10 @@
+{
+  "name": "@sentry/removal-of-void-from-transport-return-types",
+  "summary": "Codemod to remove void from Transport.send return types and ensure it returns TransportMakeRequestResponse in Sentry SDK.",
+  "safety": "conservative",
+  "tags": [
+    "sentry",
+    "migration"
+  ],
+  "options": {}
+}

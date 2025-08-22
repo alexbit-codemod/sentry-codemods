@@ -1,0 +1,19 @@
+{
+  "name": "sentry-codemod",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Codemods for Sentry, built in collaboration with Codemod.",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "typescript": "^5.5.4"
+  }
+}

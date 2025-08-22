@@ -1,0 +1,10 @@
+{
+  "name": "@sentry/replace-span-status-from-http-code",
+  "summary": "Codemod to replace spanStatusfromHttpCode with getSpanStatusFromHttpCode in Sentry 8.x for improved status handling.",
+  "safety": "conservative",
+  "tags": [
+    "sentry",
+    "migration"
+  ],
+  "options": {}
+}
