@@ -10,10 +10,12 @@
     "format": "biome format --write .",
     "lint": "biome lint .",
     "check": "biome check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:fixtures": "node scripts/test-v8-fixtures.cjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "jscodeshift": "^0.15.3"
   }
 }

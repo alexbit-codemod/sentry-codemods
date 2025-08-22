@@ -10,7 +10,7 @@ Thanks for improving Sentry Codemod. This repo hosts official codemods for Sentr
 ## Development
 
 - Install deps: your package manager will be used only for tooling (TypeScript, Biome).
-- Add a new recipe by copying `recipes/_template`.
+- Add a new recipe by copying `codemods/_template`.
 - Keep transforms idempotent and conservative by default.
 
 ## Checks

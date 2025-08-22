@@ -11,8 +11,8 @@ Recipes:
 - `remove-replay-package-and-update-integration/`
 - `replace-span-status-from-http-code/`
 
-Run any recipe via:
+Maintainers: run fixture tests with:
 
 ```bash
-npx codemod ./recipes/v8/<recipe-id> --dry
+npm run test:fixtures
 ```
