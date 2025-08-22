@@ -1,1 +1,0 @@
-const spanStatus = getSpanStatusFromHttpCode(200);

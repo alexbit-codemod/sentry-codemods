@@ -12,50 +12,34 @@ Caution: These scripts change source code. Commit or stash changes before runnin
 Run a codemod from the registry:
 
 ```bash
-npx codemod@latest sentry/v8/<codemod-name>
+npx codemod@latest sentry/vX/<codemod-name>
 ```
 
-## Available Codemods
+- See the [Codemod CLI reference](https://docs.codemod.com/cli/cli-reference) for full usage.
+- This repository hosts documentation and directory structure only; codemods themselves are published packages.
 
-- See `codemods/` for available transformations.
-- When published, v8 codemods can be invoked via `npx codemod@latest sentry/v8/<codemod-name>`.
+## What lives here
 
-### Sentry v8
-
-- `sentry/v8/removal-of-addGlobalEventProcessor`
-- `sentry/v8/removal-of-void-from-transport-return-types`
-- `sentry/v8/removal-Sentry-configureScope-method`
-- `sentry/v8/removal-Severity-Enum`
-- `sentry/v8/remove-replay-package-and-update-integration`
-- `sentry/v8/replace-span-status-from-http-code`
+- `codemods/`: placeholders (by major version) where codemod packages may be added.
+- `codemods/vX/migration-recipe/`: optional “recipe” (a daisy-chained orchestration of codemods). A recipe is not a single codemod.
+- No engine-specific transforms are stored in this repo.
 
 ## Repository Structure
 
 ```
 codemods/
-  <codemod-name>/
-    meta.json        // name, summary, safety level, tags, options
-    transform.ts     // the migration entrypoint (ESM, TypeScript)
-    tests/           // fixture-based tests (optional)
-    fixtures/        // input/output samples for tests (optional)
+  vX/
+    <codemod-name>/            # optional: package placeholder (no source kept here)
+    migration-recipe/          # optional: orchestration, when applicable
 utils/
-  index.ts           // shared helpers reused by codemods
+  index.ts                     # shared helpers for docs/tools (no transforms)
 ```
 
 ## Conventions
 
-- ESM, TypeScript, Node 20+.
-- Keep transforms idempotent and conservative by default.
-- Expose user-tunable options with sensible defaults.
-- Add `meta.json` with: `name`, `summary`, `safety`, `tags`, `options`.
-
-## Testing
-
-Run fixture tests for v8 codemods:
-
-```bash
-npm run test:fixtures
-```
+- ESM, TypeScript, Node 20+ for any helper tooling kept here.
+- Codemods are published and run via `npx codemod@latest sentry/vX/<codemod-name>`.
+- “Recipe” refers to a daisy-chained flow that orchestrates multiple codemods.
 
 ## Contributing
 

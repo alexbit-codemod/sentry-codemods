@@ -1,1 +1,0 @@
-logSpanStatus(spanStatusfromHttpCode(201));

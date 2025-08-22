@@ -1,15 +1,14 @@
-# Recipes
+# Codemods
 
-Each recipe contains a codemod targeting a specific Sentry migration or best practice.
+This directory contains placeholders for versioned codemods and optional recipes.
+
+- Codemod: a single published transformation package (not stored here).
+- Recipe: a daisy-chained orchestration of multiple codemods.
 
 Structure:
 
 ```
-<recipe-id>/
-  meta.json      // name, summary, safety, tags, options
-  transform.ts   // ESM entrypoint
-  tests/         // optional test harness
-  fixtures/      // sample before/after files
+vX/
+  <codemod-name>/        # optional placeholder for docs/metadata only
+  migration-recipe/      # optional orchestration, when applicable
 ```
-
-Create a new recipe by copying `_template` and updating `meta.json` and `transform.ts`.

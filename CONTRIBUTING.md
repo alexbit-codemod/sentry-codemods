@@ -9,9 +9,21 @@ Thanks for improving Sentry Codemod. This repo hosts official codemods for Sentr
 
 ## Development
 
-- Install deps: your package manager will be used only for tooling (TypeScript, Biome).
-- Add a new codemod by copying `codemods/_template` or scaffolding a codemod with `npx codemod@latest init`.
-- Keep transforms idempotent and conservative by default.
+- To scaffold a new codemod:
+
+```bash
+npx codemod@latest init
+```
+
+- To publish the codemod to [Codemod Registry](app.https://app.codemod.com/registry) (run in the codemod's directory):
+
+```bash
+npx codemod@latest publish
+```
+
+## Directory Layout
+
+- `codemods/` contains versioned placeholders and, optionally, a `migration-recipe/` folder when orchestration is provided.
 
 ## Checks
 
@@ -20,9 +32,9 @@ Thanks for improving Sentry Codemod. This repo hosts official codemods for Sentr
 
 ## Pull Requests
 
-- Describe the motivation and migration scenario
-- Include minimal fixtures (`fixtures/`) and, if applicable, a simple test script in `tests/`
-- Document options and safety in `meta.json`
+- Describe the proposed codemod or recipe and intended migration scenario
+- Keep this repo free of engine-specific transform code
+- If proposing a recipe, document each included codemod and the order
 
 ## License
 

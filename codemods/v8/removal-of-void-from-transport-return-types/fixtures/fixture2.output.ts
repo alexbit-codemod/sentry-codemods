@@ -1,1 +1,0 @@
-type TransportSend = (event: Event) => Promise<TransportMakeRequestResponse>;

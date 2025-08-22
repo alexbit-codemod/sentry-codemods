@@ -1,1 +1,0 @@
-Sentry.getCurrentScope().setExtra('key', 'value');

@@ -1,1 +1,0 @@
-const level: SeverityLevel = "error";
