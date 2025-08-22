@@ -49,7 +49,7 @@ utils/
 - Expose user-tunable options with sensible defaults.
 - Add `meta.json` with: `name`, `summary`, `safety`, `tags`, `options`.
 
-## Maintainers: Testing
+## Testing
 
 Run fixture tests for v8 codemods:
 
