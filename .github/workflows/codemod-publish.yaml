@@ -85,9 +85,9 @@ jobs:
           echo "Directory contents:"
           ls -lah "$CODEMOD_PATH"
 
-      - uses: pnpm/action-setup@v4
+      - uses: npm/action-setup@v4
         with:
-          version: 10
+          version: 11
 
       - uses: actions/setup-node@v4
         with:
@@ -95,13 +95,13 @@ jobs:
 
       - name: Install project dependencies
         run: |
-          pnpm install --no-frozen-lockfile
-          pnpm install -g codemod@latest
+          npm install --no-frozen-lockfile
+          npm install -g codemod@latest
 
       # Run test before login to not waste time if it fails
       - name: Validate workflow
         working-directory: ${{ steps.parse-tag.outputs.codemod-path }}
-        run: pnpx codemod@latest workflow validate --workflow workflow.yaml
+        run: npx codemod@latest workflow validate --workflow workflow.yaml
 
       - name: Check if package.json exists
         id: check-package-json
@@ -116,16 +116,16 @@ jobs:
       - name: Run javascript ast-grep codemod Tests
         if: steps.check-package-json.outputs.has-package-json == 'true'
         working-directory: ${{ steps.parse-tag.outputs.codemod-path }}
-        run: pnpm test
+        run: npm test
 
       - name: Authenticate with Codemod registry
         env:
           CODEMOD_API_KEY: ${{ secrets.CODEMOD_API_KEY }}
-        run: pnpx codemod@latest login --api-key "$CODEMOD_API_KEY"
+        run: npx codemod@latest login --api-key "$CODEMOD_API_KEY"
 
       - name: Publish codemod
         working-directory: ${{ steps.parse-tag.outputs.codemod-path }}
-        run: pnpx codemod@latest publish
+        run: npx codemod@latest publish
 
       - name: Create release summary
         env:
