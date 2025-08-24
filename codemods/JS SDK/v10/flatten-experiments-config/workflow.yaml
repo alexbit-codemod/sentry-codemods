@@ -1,0 +1,22 @@
+version: "1"
+name: "flatten-experiments-config"
+description: "Flatten _experiments configuration objects by extracting enableLogs and beforeSendLog properties to parent level"
+nodes:
+  - id: run-codemod
+    name: Run codemod
+    type: automatic
+    steps:
+      - name: Run JS ast-grep (jssg) codemod
+        js-ast-grep:
+          js_file: scripts/codemod.ts
+          base_path: .
+          include:
+            - "**/*.ts"
+            - "**/*.js"
+            - "**/*.jsx"
+            - "**/*.tsx"
+            - "**/*.cts"
+            - "**/*.mts"
+          exclude:
+            - "**/node_modules/**"
+          language: typescript

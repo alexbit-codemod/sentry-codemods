@@ -1,0 +1,18 @@
+schema_version: "1.0"
+
+name: "flatten-experiments-config"
+version: "0.1.0"
+description: "Flattens _experiments config"
+author: "Alex Bit (alex@codemod.com)"
+license: "MIT"
+workflow: "workflow.yaml"
+category: "migration"
+
+targets:
+  languages: ["typescript"]
+
+keywords: ["transformation", "migration"]
+
+registry:
+  access: "private"
+  visibility: "private"
