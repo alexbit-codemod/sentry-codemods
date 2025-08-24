@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for improving Sentry Codemod. This repo hosts official codemods for Sentry, built in collaboration with Codemod.
+Thanks for your contributions to Sentry codemods to help users adopt latest SDK features easily. 
 
 ## Prerequisites
 
