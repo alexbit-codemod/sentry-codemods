@@ -85,9 +85,6 @@ jobs:
           echo "Directory contents:"
           ls -lah "$CODEMOD_PATH"
 
-      - uses: npm/action-setup@v4
-        with:
-          version: 11
 
       - uses: actions/setup-node@v4
         with:
