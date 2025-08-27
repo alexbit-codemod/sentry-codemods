@@ -7,11 +7,11 @@ name: Publish Codemod
 on:
   push:
     tags:
-      - "v*@*" # eg: v1.0.0@codemod-name
+      - "*@v*" # eg: codemod-name@v1.0.0
   workflow_dispatch:
     inputs:
       tag:
-        description: "Tag to publish (format: v1.0.0@codemod-name)"
+        description: "Tag to publish (format: codemod-name@v1.0.0)"
         required: true
         type: string
 
@@ -53,16 +53,15 @@ jobs:
           fi
 
           # Validate tag format
-          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+@[a-zA-Z0-9_-]+$ ]]; then
+          if [[ ! "$TAG" =~ ^[a-zA-Z0-9_-]+@v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "❌ Invalid tag format: $TAG"
-            echo "Expected format: v1.0.0@codemod-name"
+            echo "Expected format: codemod-name@v1.0.0"
             exit 1
           fi
 
           # Extract components
-          VERSION="${TAG%@*}"      # Everything before @
-          VERSION="${VERSION#v}"   # Remove v prefix
-          CODEMOD_NAME="${TAG#*@}" # Everything after @
+          CODEMOD_NAME="${TAG%@*}"      # Everything before @
+          VERSION="${TAG#*@}"   # Everything after @
 
           # Set outputs
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -74,6 +73,7 @@ jobs:
         id: find-codemod
         env:
           CODEMOD_NAME: ${{ steps.parse-tag.outputs.codemod-name }}
+          VERSION: ${{ steps.parse-tag.outputs.version }}
         run: |
           echo "🔍 Searching for codemod '$CODEMOD_NAME' in all codemod.yaml files..."
 
@@ -105,14 +105,17 @@ jobs:
             # First try with yq if available, otherwise use grep/sed
             if command -v yq >/dev/null 2>&1; then
               YAML_NAME=$(yq eval '.name' "$yaml_file" 2>/dev/null || echo "")
+              YAML_VERSION=$(yq eval '.version' "$yaml_file" 2>/dev/null || echo "")
             else
               # Fallback to grep/sed for basic YAML parsing
               YAML_NAME=$(grep -E '^[[:space:]]*name[[:space:]]*:' "$yaml_file" | head -1 | sed 's/^[[:space:]]*name[[:space:]]*:[[:space:]]*//' | sed 's/[[:space:]]*$//' | sed 's/^["\x27]//' | sed 's/["\x27]$//' || echo "")
+              YAML_VERSION=$(grep -E '^[[:space:]]*version[[:space:]]*:' "$yaml_file" | head -1 | sed 's/^[[:space:]]*version[[:space:]]*:[[:space:]]*//' | sed 's/[[:space:]]*$//' | sed 's/^["\x27]//' | sed 's/["\x27]$//' || echo "")
             fi
             
             echo "  - Name in file: '$YAML_NAME'"
-            
-            if [[ "$YAML_NAME" == "$CODEMOD_NAME" ]]; then
+            echo "  - Version in file: '$YAML_VERSION'"
+
+            if [[ "$YAML_NAME" == "$CODEMOD_NAME" && "v$YAML_VERSION" == "$VERSION" ]]; then
               FOUND_PATH=$(dirname "$yaml_file")
               echo "  ✅ Match found!"
               break
