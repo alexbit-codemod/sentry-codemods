@@ -3,45 +3,33 @@
   alt="Sentry SDK Migration Codemods"
 />
 
-This repo contains community-led official codemods approved by the Sentry team to help users adopt new SDK features and handle breaking changes safely and easily.
+Official Sentry codemods to help users adopt new features and handle breaking changes with ease.
 
-## Quickstart
+Community contributions are welcome and appreciated! Check open issues for codemods to build, or open a new one if something’s missing. See the [contribution guide](./CONTRIBUTING.md) for details.
 
-Caution: These scripts change source code. Commit or stash changes before running.
-
-Run a codemod from the registry:
+## Running codemods
+> [!CAUTION]
+> Caution: Codemods modify code! Run them only on Git-tracked files, and commit or stash changes first.
+### From the registry 
+Recommended for better UX, downloads the package from [registry](https://app.codemod.com/registry).
 
 ```bash
-npx codemod@latest @sentry/<codemod-name>
+npx codemod@latest <codemod-name>
+```
+For example: 
+```
+npx codemod@latest sentry/v8/migration-recipe
+```
+### From the source 
+```bash
+npx codemod workflow run -w /path/to/folder/containing/workflow.yaml
 ```
 
-- See the [Codemod CLI reference](https://docs.codemod.com/cli/cli-reference) for full usage.
+> [!NOTE]
+> By default, codemods run in the current folder. Add `-t /target/path` to your command to change it.
 
-## What lives here
-
-- `codemods/`: placeholders (by major version) where codemod packages may be added.
-- `codemods/vX/migration-recipe/`: optional “recipe” (a daisy-chained orchestration of codemods). A recipe is not a single codemod.
-
-## Repository Structure
-
-```
-codemods/
-  vX/
-    <codemod-name>/            # optional: package placeholder (no source kept here)
-    migration-recipe/          # optional: orchestration, when applicable
-utils/
-  index.ts                     # shared helpers for docs/tools (no transforms)
-```
-
-## Conventions
-
-- ESM, TypeScript, Node 20+ for any helper tooling kept here.
-- Codemods are published and run via `npx codemod@latest @sentry/<codemod-name>`.
-- “Recipe” refers to a daisy-chained flow that orchestrates multiple codemods.
-
-## Contributing
-
-Contributions welcome. Please open an issue to discuss proposed codemods or improvements.
+See the [Codemod docs](https://go.codemod.com/cli-docs) for all CLI commands and options.
+  
 
 ## License
 
