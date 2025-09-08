@@ -18,7 +18,7 @@ npx codemod@latest <codemod-name>
 ```
 For example: 
 ```
-npx codemod@latest sentry/v8/migration-recipe
+npx codemod@latest flatten-experiments-config
 ```
 ### From the source 
 ```bash
