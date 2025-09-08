@@ -5,10 +5,14 @@
 	"type": "module",
 	"devDependencies": {
 		"@codemod.com/jssg-types": "^1.0.3",
-		"typescript": "^5.8.3"
+		"typescript": "^5.9.2"
 	},
 	"scripts": {
 		"test": "npx codemod@latest jssg test -l typescript ./scripts/codemod.ts",
-		"check-types": "npx tsc --noEmit"
+		"check-types": "npx tsc --noEmit",
+		"dev": "./scripts/dev-workflow.sh",
+		"lint": "npx biome check --write ./scripts/codemod.ts",
+		"format": "npx biome format --write ./scripts/codemod.ts",
+		"quality": "npx biome check --write ./scripts/codemod.ts && npx biome format --write ./scripts/codemod.ts"
 	}
 }
